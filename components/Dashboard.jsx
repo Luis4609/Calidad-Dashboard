@@ -1,11 +1,11 @@
 import dynamic from "next/dynamic";
-import { Grid } from "@mui/material";
 import Title from "./Title";
+import { Grid } from "@mui/material";
 
-const MyLineChart = dynamic(() => import("./Charts/ChartExample"), {
+const MyLineChart = dynamic(() => import("./Charts/LineChart"), {
   ssr: false,
 });
-const MyBarChart = dynamic(() => import("./Charts/BarExample"), {
+const MyBarChart = dynamic(() => import("./Charts/BarChart"), {
   ssr: false,
 });
 const MyDoughtnutChart = dynamic(() => import("./Charts/Doughnut"), {
@@ -23,12 +23,12 @@ function Dashboard() {
 
   return (
     <>
-      <Grid container spacing={3}>
-        <Grid item xs={8}>
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
           <Title>Line Chart</Title>
           <MyLineChart></MyLineChart>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <Title>Bar Chart</Title>
           <MyBarChart></MyBarChart>
         </Grid>

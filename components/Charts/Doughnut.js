@@ -22,22 +22,22 @@ export const data = {
         "rgba(32,214,76, 1)",
       ],
       hoverOffset: 4,
-      borderWidth: 1,
+      borderWidth: 2,
     },
   ],
 };
 export const options = {
   elements: {
     arc: {
-      weight: 0.5,
-      borderWidth: 3,
+      weight: 2,
+      borderWidth: 100,
     },
   },
-  cutout: 750,
+  cutout: 100,
 };
 
 function DoughnutExample() {
-  return <Doughnut data={data} options={options} width={50} height={50}></Doughnut>;
+  return <Doughnut data={data} options={options}></Doughnut>;
 }
 
 export default DoughnutExample;
