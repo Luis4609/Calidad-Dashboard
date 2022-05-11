@@ -1,15 +1,14 @@
 import dynamic from "next/dynamic";
-import styles from "../styles/Home.module.css";
-import NavBar from "../components/NavBar";
-import { Container, Grid, Item } from "@mui/material";
+import { Grid } from "@mui/material";
+import Title from "./Title";
 
-const MyLineChart = dynamic(() => import("../components/ChartExample"), {
+const MyLineChart = dynamic(() => import("./Charts/ChartExample"), {
   ssr: false,
 });
-const MyBarChart = dynamic(() => import("../components/BarExample"), {
+const MyBarChart = dynamic(() => import("./Charts/BarExample"), {
   ssr: false,
 });
-const MyDoughtnutChart = dynamic(() => import("../components/Doughnut"), {
+const MyDoughtnutChart = dynamic(() => import("./Charts/Doughnut"), {
   ssr: false,
 });
 
@@ -24,18 +23,17 @@ function Dashboard() {
 
   return (
     <>
-      <NavBar></NavBar>
-      <Grid container spacing={3} >
+      <Grid container spacing={3}>
         <Grid item xs={8}>
-          <h1>Line Chart</h1>
+          <Title>Line Chart</Title>
           <MyLineChart></MyLineChart>
         </Grid>
         <Grid item xs={4}>
-          <h1>Bar Chart</h1>
+          <Title>Bar Chart</Title>
           <MyBarChart></MyBarChart>
         </Grid>
         <Grid item xs={4}>
-          <h1>Donut Chart</h1>
+          <Title>Donut Chart</Title>
           <MyDoughtnutChart></MyDoughtnutChart>
         </Grid>
       </Grid>
