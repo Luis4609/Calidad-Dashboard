@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import { UserProvider } from "@auth0/nextjs-auth0";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
+
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',

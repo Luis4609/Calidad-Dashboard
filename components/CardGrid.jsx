@@ -1,9 +1,9 @@
-import InfoCard from "../components/Card";
+import InfoCard from "./Card";
 import { Grid } from "@mui/material";
 
 function CardGrid() {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} mt={2}>
       <Grid item xs={4}>
         <InfoCard
           title={32}

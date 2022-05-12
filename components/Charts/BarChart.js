@@ -1,3 +1,4 @@
+import { border, borderRadius } from "@mui/system";
 import {
   Chart as ChartJs,
   CategoryScale,
@@ -11,6 +12,7 @@ import {
   BarElement,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { data } from "./Doughnut";
 
 //Register
 ChartJs.register(
@@ -25,22 +27,17 @@ ChartJs.register(
   Filler
 );
 
-function BarChart() {
+function BarChart(props, { dataset }) {
+  const labels = props.labels.map((label) => label);
+
   const data = {
-    labels: ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"],
+    labels: labels,
     datasets: [
       {
-        label: "Brutto",
-        borderRadius: 30,
-        data: [0.1, 0.4, 0.2, 0.6, 0.3, 0.5, 0.1, 0.9],
+        label: "Número de agentes",
+        borderRadius: 40,
+        data: [0, 2, 13, 10, 1],
         backgroundColor: "rgba(32,214,155, 1)",
-        barThickness: 10,
-      },
-      {
-        label: "Netto",
-        borderRadius: 20,
-        data: [0.07, 0.3, 0.4, 0.15, 0.2, 0.4, 0.8, 0.9],
-        backgroundColor: "rgba(1,98,255, 1)",
         barThickness: 10,
       },
     ],
@@ -48,15 +45,15 @@ function BarChart() {
   const options = {
     plugins: {
       legend: {
-        position: "top",
-        align: "start",
+        position: "bottom",
+        align: "center",
         labels: {
-          boxWidth: 7,
+          boxWidth: 10,
           usePointStyle: true,
           pointStyle: "circle",
         },
         title: {
-          text: "Sales Report",
+          text: `${props.title}`,
           display: true,
           color: "#000",
           font: {
@@ -67,10 +64,10 @@ function BarChart() {
     },
     scales: {
       xAxis: {
-        display: false,
+        display: true,
       },
       yAxis: {
-        max: 1,
+        max: 15,
       },
     },
     elements: {
@@ -82,5 +79,11 @@ function BarChart() {
   };
   return <Bar data={data} height={100} options={options}></Bar>;
 }
+
+BarChart.getInitialProps = async (ctx) => {
+  const res = await fetch("http://localhost:3000/api/dataCharts");
+  const json = await res.json();
+  return { dataset: json };
+};
 
 export default BarChart;

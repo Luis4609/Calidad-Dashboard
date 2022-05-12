@@ -15,7 +15,9 @@ import MenuItem from "@mui/material/MenuItem";
 import { deepPurple } from "@mui/material/colors";
 //FontAwesome imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faUser } from "@fortawesome/free-solid-svg-icons";
+
+import { useUser } from "@auth0/nextjs-auth0";
 
 const pages = ["Dashboard", "Entidades", "Administración", "Idioma"];
 const settings = ["Ajustes", "Contraseña", "Sesiones", "Cerrar la sesión"];
@@ -23,6 +25,8 @@ const settings = ["Ajustes", "Contraseña", "Sesiones", "Cerrar la sesión"];
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const { user, error, isLoading } = useUser();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -129,12 +133,21 @@ const ResponsiveAppBar = () => {
                 </Button>
               </Link>
             ))}
+            <Link href={`/admin`} passHref key={"admin"}>
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Admin
+              </Button>
+            </Link>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar sx={{ bgcolor: deepPurple[500] }}>P</Avatar>
+                {user && <Avatar src={user.picture} />}
+                {!user && <Avatar sx={{ bgcolor: deepPurple[500] }}>P</Avatar>}
               </IconButton>
             </Tooltip>
             <Menu
@@ -158,6 +171,20 @@ const ResponsiveAppBar = () => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
+              {user && (
+                <Link href={`/api/auth/logout`} passHref>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">Logout</Typography>
+                  </MenuItem>
+                </Link>
+              )}
+              {!user && (
+                <Link href={`/api/auth/login`} passHref>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">Login</Typography>
+                  </MenuItem>
+                </Link>
+              )}
             </Menu>
           </Box>
         </Toolbar>

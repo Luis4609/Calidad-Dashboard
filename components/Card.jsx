@@ -3,16 +3,14 @@ import {
   CardContent,
   Typography,
   CardActionArea,
-  Palette,
+  CardHeader,
 } from "@mui/material";
 
 function InfoCard(props) {
   return (
     <Card sx={{ bgcolor: `${props.color}` }} variant="outlined">
       <CardActionArea>
-        <Typography variant="h4" gutterBottom component="div">
-          {props.title}
-        </Typography>
+        <CardHeader title={props.title}></CardHeader>
         <CardContent>
           <Typography variant="h6" color="text.secondary">
             {props.description}

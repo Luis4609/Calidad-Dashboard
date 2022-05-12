@@ -4,24 +4,22 @@ import { Doughnut } from "react-chartjs-2";
 ChartJs.register(ArcElement, Tooltip, Legend);
 
 export const data = {
-  labels: ["Event1", "Event2", "Event3", "Event4"],
+  labels: ["Correcta", "Incompleta", "No solucionada"],
   datasets: [
     {
       label: "Eventos",
-      data: [300, 50, 100, 250],
+      data: [300, 50, 100],
       backgroundColor: [
         "rgba(32,244,155,0.2)",
         "rgba(32,34,155,0.2)",
         "rgba(32,214,32,0.2)",
-        "rgba(32,214,76,0.2)",
       ],
       borderColor: [
         "rgba(32,244,155, 1)",
         "rgba(32,34,155, 1)",
         "rgba(32,214,32, 1)",
-        "rgba(32,214,76, 1)",
       ],
-      hoverOffset: 4,
+      hoverOffset: 10,
       borderWidth: 2,
     },
   ],
